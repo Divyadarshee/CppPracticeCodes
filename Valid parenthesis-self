@@ -1,0 +1,22 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        if(s.length()%2==1){return false;}
+        char a[] = {'(', '{','['};
+        char b[] = {')','}',']'};
+        vector <int> flag;
+        for(int i=0;i<s.length();i++){
+            if(find(a,a+3,s[i])!= end(a)){
+                auto itr = find(a,a+3,s[i]);
+                flag.push_back(distance(a,itr));cout<<flag.back()<<endl; continue;}
+            else{
+                if(flag.size() == 0){return false;}
+                if(s[i]!=b[flag.back()]){return false;}
+                else{flag.pop_back();}
+            }
+            
+        }
+        if(flag.size() != 0){return false;}
+        return true;
+    }
+};
