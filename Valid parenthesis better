@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int getMinRemoval(string& s){
+        stack<char> stk;
+        for(auto c:s){
+            if(isalpha(c)) continue;
+            if(!stk.empty() and (stk.top()=='(' and c==')' ||  stk.top()=='{' and c=='}' ||  stk.top()=='[' and c==']') )
+                stk.pop();
+            else stk.push(c);
+        }
+        return stk.size();
+    }
+    bool isValid(string s) {
+        return getMinRemoval(s)==0;
+    }
+};
